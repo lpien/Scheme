@@ -1,9 +1,7 @@
-/**
- * 
- * @author Lauren
- * lpien@u.rochester.edu
- *
- */
+/*
+Test class -- uses regex to define a new Word and inserts into the ArrayTree.
+Prints out final statistics
+*/
 
 import java.util.*;
 import java.util.regex.Pattern;
