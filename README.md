@@ -1,1 +1,3 @@
 # Word-Count
+#JS
+# JS
