@@ -1,0 +1,72 @@
+  #include <stdio.h>
+  #include <stdlib.h>
+  
+  int main(int argc, char *argv[]){
+	
+	//Declaring all variables, arrays, and pointers
+	int i, j, k, x, b, c, y, z, m, n, o, p, q;
+	int a[5][5];
+	int *pi[5];
+	int **ppi;
+	
+	//Part 1: Print command line argument
+	for(i = 0; i < argc; i++){
+		printf("%s%s\n", argv[i], (i < argc-1) ? " " : "");
+	}
+	
+	//Part 2: Create 2D array and fill it with multiplication table
+	for(j = 0; j < 5; j++){
+		for(k = 0; k < 5; k++){
+			a[j][k] = (j+1)*(k+1);
+			printf("%d ", a[j][k]);
+		}
+		printf("\n");
+	}
+	
+	//Part 3: Loop points a new array to the multiplication table array
+	//	sets array 'pi' equal to array 'a'
+	for(b = 0; b < 5; b++){
+		pi[b] = a[b];
+	}
+	//Loop prints out array
+	for(x = 0; x < 5; x++){
+		for(c = 0; c < 5; c++){
+			printf("%d ",*(pi[x] + c));
+		}
+		printf("\n");
+	}
+	
+	//Part 4: Loop increments array using pointers to pointers
+	ppi = pi;
+	for(y = 0; y < 5; y++){
+		for(z = 0; z < 5; z++){
+			printf("%d ", *(*ppi + z));
+		}
+		ppi++;
+		printf("\n");
+	}
+	
+	//Part 5
+	//New integer pointer to pointer initialized
+	//and a 5x5 array is created 
+	int **ppi2 = (int **) malloc(5 * sizeof(int *));
+	
+	for(m = 0; m < 5; m++){
+		*(ppi2 + m) = (int *) malloc(5 * sizeof(int));
+	}
+	
+	//Pointer to pointer set to initial double array
+	for(n = 0; n < 5; n++){
+		for(o = 0; o < 5; o++){
+			*(*(ppi2 + n) + o) = a[n][o];
+		}
+	}
+	
+	//Loop prints out array by incrementing
+	for(p = 0; p < 5; p++){
+		for(q = 0; q < 5; q++){
+			printf("%d ", *(*(ppi2 + p) + q));
+		}
+		printf("\n");
+	}
+}
