@@ -1,0 +1,63 @@
+  #include <stdio.h>
+  
+  int strcat(char *s, char *t);
+  int stringCopy(char *s, char *t);
+  char charArr[30];
+  int intArr[15];
+  
+  int main(int argc, char *argv[]){
+	int i;
+	
+	/*Loops through command prompt
+	  If string "Lauren" or "Anna" are found then prompt prints
+	  "Hello, " with name found
+	  If string is not found then command prompt prints out input */
+	for(i = 0; i < argc; i++){
+		if(strcmp(argv[i], "Lauren") == 0 || strcmp(argv[i], "Anna") == 0){
+			StringCopy(charArr, "Hello, ");
+			strcat(charArr, argv[i]);
+			printf("%s\n", charArr);
+		}
+		else{
+			printf("%s%s\n", argv[i], (i < argc-1) ? " " : "");
+		}
+	}
+
+	//Prits an array of each element squared
+	int j;
+	for(j = 0; j < 15; j++){
+		intArr[j] = j * j;
+		printf("%d ",*(intArr + j));
+	}
+		return 0;
+	}
+  
+  //Part 2: compares two character strings
+  int strcmp(char *s, char *t){
+	for( ; *s == *t; s++, t++){
+		if(*s == '\0')
+			return 0;
+		return *s - *t;
+	}
+  }
+  
+  //Part 3: pointer version concatenates string s and string t
+ int strcat(char *s, char *t){
+	int x = 0;
+	int y = 0;
+	while(*(s + x) != '\0')
+		x++;
+	while((*(s + x++) = *(t + y++)) != '\0')
+		;
+	
+  }
+  
+  //Part 4: pointer version of "StringCopy", copies string t to string s
+  int StringCopy(char *s, char *t){
+	int i = 0;
+	
+	while((*s = *t) != '\0'){
+		s++;
+		t++;
+	}
+}
