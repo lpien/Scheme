@@ -1,0 +1,71 @@
+  #include <stdio.h>
+  #include <stdlib.h>
+  
+  //int (*greatcmp)(int m, int a[]);
+  int (*greatcmp)(int, int);
+  void BubbleSort(int m, int a[], int (*greatcmp)(int, int));
+  int gtcmp(int x, int y);
+  int ltcmp(int x, int y);
+  
+  int main(int argc, char *argv[]){
+	int i, j, k;
+	int size = 10;
+	int rand();
+	int a[size];
+	//greatcmp = &gtcmp;
+	
+	//Part 1: loop fills array with random integers
+	printf("Random array:\n");
+	for(i = 0; i < size; i++){
+		a[i] = rand();
+		printf("%d\n", a[i]);
+	}
+	
+	//Part 2: uses BubbleSort function and prints out new sorted array
+	//Part 5: modified BubbleSort uses pointer to a function
+	BubbleSort(size, a, gtcmp);
+	printf("\nSorted array, smallest to largest:\n");
+	for(j = 0; j < size; j++){
+		printf("%d\n", a[j]);
+	}
+	
+	//Prints sorted array from smallest to largest number
+	BubbleSort(size, a, ltcmp);
+	printf("\nSorted array, largest to smallest:\n");
+	for(k = 0; k < size; k++){
+		printf("%d\n", a[k]);
+	}
+  }
+  
+  //Part 2: bubblesort function
+	//uses function gtcmp to compare values in array
+  void BubbleSort(int m, int a[], int (*cmp)(int,int)){		//Part 2
+	int x, y, z;
+	for(x = 0; x < m - 1; x++){
+		for(y = 0; y < m - x - 1; y++){
+			//if(a[y] > a[y+1]){			original code for BubbleSort method
+			//if(gtcmp(a[y], a[y+1])){		//Part 4: uses function gtcmp to compare integer values
+			if((*cmp)(a[y],a[y+1])){		//Part 5: uses a pointer to a function
+				z = a[y];
+				a[y] = a[y+1];
+				a[y+1] = z;
+			}
+		}
+	}
+  }
+  
+  //Part 3: gtcmp returns 1 if the first parameter is larger than the second
+	//ltcmp returns 1 if the first parameter is less than the second 
+  int gtcmp(int x, int y){
+	if(x > y)
+		return 1;
+	else
+		return 0;
+  }
+ 
+  int ltcmp(int x, int y){
+	if(x < y)
+		return 1;
+	else
+		return 0;
+  }
