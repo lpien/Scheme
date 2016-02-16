@@ -1,0 +1,54 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-advanced-reader.ss" "lang")((modname Week12Lab1) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #t #t none #f ())))
+;square function
+(define (square x) (* x x) )
+
+;close function
+(define (close x y)
+  (if (< (abs (- x y)) 0.0001) 1 0)
+  )
+
+;average function
+(define (average x y)
+  (/ (+ x y) 2)
+  )
+
+;improve function
+(define (improve x y)
+  (average y (/ x y))
+  )
+
+;sqrtrecur function
+;x = number we want sqrt of 
+;y = guess/approx.
+(define (sqrtrecur x y)
+  (begin
+    (display y)
+    (newline)
+  (if (= 1 (close x (square y))) (print y) (sqrtrecur x (improve x y)))
+  )
+  )
+
+;sqrt function
+(define (squroot x)
+  (sqrtrecur x 1.0)
+  )
+
+;cube function
+;y is a "guess" for cube root of x
+(define (cube x y)(/(+ (/ x (* y y)) (* 2 y))3))
+
+;GCD function
+(define (GCD a b)
+  (if (= b 0) a (GCD b (modulo a b)))
+  )
+
+;factorial function
+(define (fact x)
+  (begin
+    (display x)
+    (newline)
+    (if (< x 1) 1 (* x (fact (- x 1))))
+    )
+  )
